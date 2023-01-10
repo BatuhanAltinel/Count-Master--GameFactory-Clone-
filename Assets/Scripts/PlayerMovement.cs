@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Touch _touch;
     [HideInInspector] public bool canMove;
+    [HideInInspector] public bool canMoveRight = true;
     [SerializeField] float _moveSpeed = 3f;
     [SerializeField] float touchMoveSpeed = 0.02f;
     void Start()

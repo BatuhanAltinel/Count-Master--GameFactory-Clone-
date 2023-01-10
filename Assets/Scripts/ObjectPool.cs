@@ -4,15 +4,51 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static ObjectPool objPool;
+    public GameObject playerPrefab;
+    public GameObject playerParent;
+    Queue<GameObject> playerQueue = new Queue<GameObject>();
+    public int amountOfPlayer = 100;
+    void Awake()
+    {
+        if(objPool == null)
+            objPool = this;
+        else
+            Destroy(gameObject);
+    }
     void Start()
     {
-        
+        FirstCreate();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FirstCreate()
     {
-        
+        for (int i = 0; i < amountOfPlayer; i++)
+        {
+            GameObject playerClone = Instantiate(playerPrefab,transform.position,Quaternion.identity);
+            playerQueue.Enqueue(playerClone);
+            playerClone.transform.parent = playerParent.transform;
+            playerClone.SetActive(false);
+        }
+    }
+
+    public GameObject GetObjectFromPool()
+    {
+        foreach (GameObject playerClone in playerQueue)
+        {
+            if(!playerClone.activeInHierarchy)
+            {
+                playerClone.SetActive(true);
+                playerQueue.Dequeue();
+                return playerClone;
+            }
+        }
+        return null;
+    }
+
+    public void ReturnToPool(GameObject obj)
+    {
+        playerQueue.Enqueue(obj);
+        obj.SetActive(false);
     }
 }

@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     Animator anim;
     PlayerMovement playerMovement;
 
+    float xBoundary = 9.5f;
+    public GameObject startPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +24,9 @@ public class Player : MonoBehaviour
             PlayWalkAnim();
         else
             PlayIdleAnim();
+        
+        BoundaryChechk();
+        Debug.Log( playerMovement.canMoveRight);
     }
 
     void PlayWalkAnim()
@@ -32,4 +38,19 @@ public class Player : MonoBehaviour
     {
         anim.SetBool("IsWalk",false);
     }
+    
+    public void PlayerPositioning()
+    {
+
+    }
+    void BoundaryChechk()
+    {
+        if(transform.position.x > xBoundary || transform.position.x < -xBoundary)
+        {
+            playerMovement.canMoveRight = false;
+        }
+    }
+
+
+
 }
