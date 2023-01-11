@@ -5,31 +5,32 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Animator anim;
+    Rigidbody rb;
     PlayerMovement playerMovement;
+    [SerializeField] Transform leftCheckPoint;
+    [SerializeField] Transform rightCheckPoint;
+    bool LeftHit;
+    bool rightHit;
 
-    float xBoundary = 9.5f;
-    public GameObject startPlayer;
-
-    // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>(); 
         playerMovement = GetComponentInParent<PlayerMovement>();  
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if(playerMovement.canMove)
+        if(GameManager.gameManager.canMove)
             PlayWalkAnim();
         else
             PlayIdleAnim();
         
-        BoundaryChechk();
-        Debug.Log( playerMovement.canMoveRight);
+        
+        // ImpulseToGround();
     }
 
-    void PlayWalkAnim()
+    public void PlayWalkAnim()
     {
         anim.SetBool("IsWalk",true);
     }
@@ -38,19 +39,45 @@ public class Player : MonoBehaviour
     {
         anim.SetBool("IsWalk",false);
     }
-    
+
     public void PlayerPositioning()
     {
-
+        float zMove = Random.Range(-2,2);
+        float xMove = Random.Range(-2,2);
+        Vector3 newPos = new Vector3(xMove,0,zMove);
+        transform.localPosition = newPos;
     }
-    void BoundaryChechk()
+
+    void OnTriggerEnter(Collider other)
     {
-        if(transform.position.x > xBoundary || transform.position.x < -xBoundary)
+        if(other.CompareTag("LeftBorder"))
         {
-            playerMovement.canMoveRight = false;
+            GameManager.gameManager.canMoveLeft = false;
+            GameManager.gameManager.canMoveRight = true;
+            Debug.Log("Left border touched");
+        }
+        if(other.CompareTag("RightBorder"))
+        {
+            GameManager.gameManager.canMoveLeft = true;
+            GameManager.gameManager.canMoveRight = false;
+            Debug.Log("right border touched");
         }
     }
-
+    void OnTriggerExit(Collider other)
+    {
+        if(other.CompareTag("LeftBorder"))
+        {
+            GameManager.gameManager.canMoveLeft = false;
+            GameManager.gameManager.canMoveRight = false;
+            Debug.Log("Left border exited");
+        }
+        if(other.CompareTag("RightBorder"))
+        {
+            GameManager.gameManager.canMoveLeft = false;
+            GameManager.gameManager.canMoveRight = false;
+            Debug.Log("right border exited");
+        }
+    }
 
 
 }

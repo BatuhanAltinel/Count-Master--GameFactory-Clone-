@@ -25,7 +25,13 @@ public class IncreasePlayer : MonoBehaviour
         for(int i =0; i < len; i++)
         {
             GameObject playerClone = ObjectPool.objPool.GetObjectFromPool();
-            playerClone.GetComponent<Player>().PlayerPositioning();
+            if(playerClone)
+            {
+                // playerClone.transform.localPosition = Vector3.zero;
+                playerClone.GetComponent<Player>().PlayerPositioning();
+            }
+                
+            
         }
     }
 }
