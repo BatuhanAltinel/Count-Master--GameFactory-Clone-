@@ -14,7 +14,8 @@ public class Obstacle : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            ObjectPool.objPool.ReturnToPool(other.gameObject);
+            // ObjectPool.objPool.ReturnToPool(other.gameObject);
+            other.GetComponent<Player>().Die();
         }
     }
 }

@@ -17,6 +17,7 @@ public class IncreasePlayer : MonoBehaviour
             gameObject.GetComponent<BoxCollider>().isTrigger = false;
             gameObject.SetActive(false);
             IncreasePlayerCount();
+            GameManager.Instance.MoveAllTeamToMiddle();
         }   
     }
 
@@ -25,10 +26,11 @@ public class IncreasePlayer : MonoBehaviour
         for(int i =0; i < len; i++)
         {
             GameObject playerClone = ObjectPool.objPool.GetObjectFromPool();
+
             if(playerClone)
             {
-                // playerClone.transform.localPosition = Vector3.zero;
-                playerClone.GetComponent<Player>().PlayerPositioning();
+                GameManager.Instance.playersInTeam.Add(playerClone);
+                // playerClone.GetComponent<Player>().PlayerPositioning();
             }
                 
             
