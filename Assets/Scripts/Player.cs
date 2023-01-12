@@ -74,12 +74,12 @@ public class Player : MonoBehaviour
         if(other.CompareTag("LeftBorder"))
         {
             GameManager.Instance.canMoveLeft = false;
-            // GameManager.Instance.canMoveRight = true;
+            // GameManager.Instance.MoveAllTeamToMiddle(0);
             Debug.Log("Left border touched");
         }
         if(other.CompareTag("RightBorder"))
-        {
-            // GameManager.Instance.canMoveLeft = true;
+        {   
+            // GameManager.Instance.MoveAllTeamToMiddle(0);
             GameManager.Instance.canMoveRight = false;
             Debug.Log("right border touched");
         }

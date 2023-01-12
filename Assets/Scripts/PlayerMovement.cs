@@ -31,12 +31,6 @@ public class PlayerMovement : MonoBehaviour
                                         transform.position.y, transform.position.z);
                     }
                 }
-                else
-                {
-                    Vector3 currentpos = transform.position;
-                    if(transform.localPosition.x <= currentpos.x)
-                        transform.position = new Vector3(currentpos.x,transform.position.y,transform.position.z);
-                }
 
                 if(GameManager.Instance.canMoveRight)
                 {
@@ -46,12 +40,6 @@ public class PlayerMovement : MonoBehaviour
                         transform.position = new Vector3(transform.position.x + _touch.deltaPosition.x * touchMoveSpeed,
                                         transform.position.y, transform.position.z);
                     }
-                }
-                else
-                {
-                    Vector3 currentpos = transform.position;
-                    if(transform.localPosition.x >= currentpos.x)
-                        transform.position = new Vector3(currentpos.x,transform.position.y,transform.position.z);
                 }
                 
             }

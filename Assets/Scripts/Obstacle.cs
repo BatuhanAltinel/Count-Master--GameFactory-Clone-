@@ -14,9 +14,9 @@ public class Obstacle : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            // ObjectPool.objPool.ReturnToPool(other.gameObject);
             other.GetComponent<Player>().Die();
-            GameManager.Instance.MoveAllTeamToMiddle(0.1f);
+            GameManager.Instance.UpdatePlayerCountText();
+            GameManager.Instance.CheckGameOver();
         }
     }
 }

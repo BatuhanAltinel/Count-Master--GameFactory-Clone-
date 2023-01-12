@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public enum GameStates{
@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameObject firstPlayer;
     public List<GameObject> playersInTeam = new List<GameObject>();
+
+    public TextMeshProUGUI playerCountText;
     public bool canMoveRight;
     public bool canMoveLeft;
-    float positioningRandomRadius = .0f;
+    float positioningRandomRadius = .9f;
 
     public float GetRandomRadius{
         get{return Random.Range(-positioningRandomRadius,positioningRandomRadius);} 
@@ -35,6 +37,17 @@ public class GameManager : MonoBehaviour
         playersInTeam.Add(firstPlayer);
     }
 
+    public void UpdatePlayerCountText()
+    {
+        playerCountText.text = playersInTeam.Count.ToString();
+    }
+
+    public void CheckGameOver()
+    {
+        if(GameManager.Instance.playersInTeam.Count <= 0)
+            Time.timeScale = 0;
+            gameState = GameStates.END;
+    }
     public void MoveAllTeamToMiddle(float timeToWait)
     {
         StartCoroutine(MoveAllTeamToMiddleRoutine(timeToWait));

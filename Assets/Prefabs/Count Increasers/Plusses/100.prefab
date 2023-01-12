@@ -61,7 +61,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb717362178f8b4a8fbdc9d4ff095d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objName: 
+  increaseAmount: 100
+  processName: +
 --- !u!1 &289116074996945143
 GameObject:
   m_ObjectHideFlags: 0
