@@ -35,18 +35,19 @@ public class GameManager : MonoBehaviour
         playersInTeam.Add(firstPlayer);
     }
 
-    public void MoveAllTeamToMiddle()
+    public void MoveAllTeamToMiddle(float timeToWait)
     {
-        StartCoroutine(MoveAllTeamToMiddleRoutine());
+        StartCoroutine(MoveAllTeamToMiddleRoutine(timeToWait));
     }
 
-    IEnumerator MoveAllTeamToMiddleRoutine()
+    IEnumerator MoveAllTeamToMiddleRoutine(float timeToWait)
     {
-        // yield return new WaitForSeconds(0.5f);
-        yield return null;
+        yield return new WaitForSeconds(timeToWait);
+        
         for (int i = 0; i < playersInTeam.Count; i++)
         {
             playersInTeam[i].GetComponent<Player>().MoveToMiddle();
         }
+        yield return null;
     }
 }

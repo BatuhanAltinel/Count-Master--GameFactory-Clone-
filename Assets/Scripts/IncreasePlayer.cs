@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class IncreasePlayer : MonoBehaviour
 {
-    public int len = 10;
+    int len;
+    public string objName;
     void Start()
     {
-        
+        objName = gameObject.name;
+        len = int.Parse(objName);
     }
 
     void OnTriggerEnter(Collider other)
@@ -17,7 +19,7 @@ public class IncreasePlayer : MonoBehaviour
             gameObject.GetComponent<BoxCollider>().isTrigger = false;
             gameObject.SetActive(false);
             IncreasePlayerCount();
-            GameManager.Instance.MoveAllTeamToMiddle();
+            GameManager.Instance.MoveAllTeamToMiddle(0);
         }   
     }
 
@@ -30,7 +32,7 @@ public class IncreasePlayer : MonoBehaviour
             if(playerClone)
             {
                 GameManager.Instance.playersInTeam.Add(playerClone);
-                playerClone.GetComponent<Player>().PlayerPositioning();
+                // playerClone.GetComponent<Player>().PlayerPositioning();
             }
                 
             

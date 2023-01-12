@@ -16,6 +16,7 @@ public class Obstacle : MonoBehaviour
         {
             // ObjectPool.objPool.ReturnToPool(other.gameObject);
             other.GetComponent<Player>().Die();
+            GameManager.Instance.MoveAllTeamToMiddle(0.1f);
         }
     }
 }

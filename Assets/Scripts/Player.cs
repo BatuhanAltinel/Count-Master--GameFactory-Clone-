@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour , IDamagable
+public class Player : MonoBehaviour
 {
     Animator anim;
     PlayerMovement playerMovement;
@@ -58,8 +58,8 @@ public class Player : MonoBehaviour , IDamagable
         while(moving)
         {
             timer += Time.deltaTime;
-            transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3(0f,0f,0f),0.1f);
-            if(timer > 1.5f)
+            transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3(0f,0f,0f),0.05f);
+            if(timer > 1f)
             {
                 moving = false;
             }
