@@ -30,7 +30,7 @@ public class IncreasePlayer : MonoBehaviour
             if(playerClone)
             {
                 GameManager.Instance.playersInTeam.Add(playerClone);
-                // playerClone.GetComponent<Player>().PlayerPositioning();
+                playerClone.GetComponent<Player>().PlayerPositioning();
             }
                 
             

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour , IDamagable
 {
     Animator anim;
     PlayerMovement playerMovement;
@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     {
         anim = GetComponent<Animator>(); 
         playerMovement = GetComponentInParent<PlayerMovement>();  
-        
     }
 
     void Update()
@@ -59,8 +58,8 @@ public class Player : MonoBehaviour
         while(moving)
         {
             timer += Time.deltaTime;
-            transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3(0,0,0),0.2f);
-            if(timer > 0.5)
+            transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3(0f,0f,0f),0.1f);
+            if(timer > 1.5f)
             {
                 moving = false;
             }
@@ -75,26 +74,15 @@ public class Player : MonoBehaviour
         if(other.CompareTag("LeftBorder"))
         {
             GameManager.Instance.canMoveLeft = false;
-            GameManager.Instance.canMoveRight = true;
+            // GameManager.Instance.canMoveRight = true;
             Debug.Log("Left border touched");
         }
         if(other.CompareTag("RightBorder"))
         {
-            GameManager.Instance.canMoveLeft = true;
+            // GameManager.Instance.canMoveLeft = true;
             GameManager.Instance.canMoveRight = false;
             Debug.Log("right border touched");
         }
     }
-    
-    // void OnTriggerExit(Collider other)
-    // {
-    //     if(other.CompareTag("LeftBorder") || other.CompareTag("RightBorder"))
-    //     {
-    //         GameManager.Instance.canMoveLeft = true;
-    //         GameManager.Instance.canMoveRight = true;
-    //         Debug.Log("border exited");
-    //     }
-    // }
-
 
 }

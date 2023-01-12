@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> playersInTeam = new List<GameObject>();
     public bool canMoveRight;
     public bool canMoveLeft;
-    float positioningRandomRadius = .25f;
+    float positioningRandomRadius = .0f;
 
     public float GetRandomRadius{
         get{return Random.Range(-positioningRandomRadius,positioningRandomRadius);} 
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator MoveAllTeamToMiddleRoutine()
     {
-        // yield return new WaitForSeconds(0.1f);
+        // yield return new WaitForSeconds(0.5f);
         yield return null;
         for (int i = 0; i < playersInTeam.Count; i++)
         {
