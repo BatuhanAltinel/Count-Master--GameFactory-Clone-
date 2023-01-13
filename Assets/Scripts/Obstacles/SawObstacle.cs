@@ -5,8 +5,7 @@ using UnityEngine;
 public class SawObstacle : Obstacle
 {
     Vector3 targetPos;
-    float targetXPoint = -14f;
-    public float timeToMove = 10f;
+    public float targetXPoint = -14f;
     float elapsedTime = 0;
     void Start()
     {
@@ -22,7 +21,7 @@ public class SawObstacle : Obstacle
         
         elapsedTime += Time.deltaTime;
 
-        float t = Mathf.Clamp01(elapsedTime/timeToMove);
+        float t = Mathf.Clamp01(elapsedTime/moveSpeed);
 
         transform.position = Vector3.Lerp(transform.position,targetPos,t);
 

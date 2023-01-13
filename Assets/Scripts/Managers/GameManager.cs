@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI playerCountText;
     public bool canMoveRight;
     public bool canMoveLeft;
+    public bool isTouchedInteractable = true;
     float positioningRandomRadius = .9f;
 
     public float GetRandomRadius{
@@ -49,16 +50,19 @@ public class GameManager : MonoBehaviour
     }
     public void MoveAllTeamToMiddle(float timeToWait)
     {
-        StartCoroutine(MoveAllTeamToMiddleRoutine(timeToWait));
+        if(isTouchedInteractable)
+            StartCoroutine(MoveAllTeamToMiddleRoutine(timeToWait));
     }
 
     IEnumerator MoveAllTeamToMiddleRoutine(float timeToWait)
     {
+        isTouchedInteractable = false;
         yield return new WaitForSeconds(timeToWait);
         
         for (int i = 0; i < playersInTeam.Count; i++)
         {
             playersInTeam[i].GetComponent<Player>().MoveToMiddle();
         }
+        isTouchedInteractable = true;
     }
 }

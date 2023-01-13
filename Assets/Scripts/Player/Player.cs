@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         {
             timer += Time.deltaTime;
             transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3(0f,0f,0f),0.05f);
-            if(timer > 1f)
+            if(timer > 1.3f)
             {
                 moving = false;
             }
