@@ -489,6 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934af14c34b61cd42bf969d1730d75a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  increaseAmount: 10
 --- !u!1 &4363407410070380341
 GameObject:
   m_ObjectHideFlags: 0

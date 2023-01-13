@@ -60,6 +60,5 @@ public class GameManager : MonoBehaviour
         {
             playersInTeam[i].GetComponent<Player>().MoveToMiddle();
         }
-        yield return null;
     }
 }

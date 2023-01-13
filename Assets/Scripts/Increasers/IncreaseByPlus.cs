@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class IncreaseByPlus : IncreasePlayer
 {
-
-   
-    void Start()
-    {
-
-    }
     public override void IncreasePlayerCount()
     {
         for(int i =0; i < increaseAmount; i++)
@@ -28,9 +22,10 @@ public class IncreaseByPlus : IncreasePlayer
     {
         if (other.CompareTag("Player"))
         {
-            OnTouchIncreaser();    
+            OnTouch();    
             IncreasePlayerCount();
-            GameManagerCheck();
+            GameManager.Instance.UpdatePlayerCountText();
+            GameManager.Instance.MoveAllTeamToMiddle(0);
         }
         
     }
