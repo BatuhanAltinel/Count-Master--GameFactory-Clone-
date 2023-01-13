@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487a89d18513a254895b587597fb4120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 10
 --- !u!1 &5182112902079305548
 GameObject:
   m_ObjectHideFlags: 0
@@ -476,7 +476,8 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: 0.5749148
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6916332545284579714, guid: 88a90ffcc00941d4b8af820821f211a4, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 88a90ffcc00941d4b8af820821f211a4, type: 3}
 --- !u!4 &9036325830619910613 stripped
 Transform:

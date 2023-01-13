@@ -517,6 +517,7 @@ GameObject:
   - component: {fileID: 8888232871507549745}
   - component: {fileID: 1833329229542223349}
   - component: {fileID: 1767783756040987769}
+  - component: {fileID: 868723067}
   m_Layer: 0
   m_Name: 40
   m_TagString: Untagged
@@ -569,3 +570,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   increaseAmount: 40
   processName: +
+--- !u!54 &868723067
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4375257446137780435}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

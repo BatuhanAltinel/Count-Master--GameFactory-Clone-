@@ -46,7 +46,6 @@ public class GameManager : MonoBehaviour
     {
         if(GameManager.Instance.playersInTeam.Count <= 0)
             Time.timeScale = 0;
-            gameState = GameStates.END;
     }
     public void MoveAllTeamToMiddle(float timeToWait)
     {
