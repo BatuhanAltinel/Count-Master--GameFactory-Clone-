@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Touch _touch;
     [SerializeField] float touchMoveSpeed = 0.02f;
+    bool isGameStarted = false;
 
     void Update()
     {
@@ -18,7 +19,12 @@ public class PlayerMovement : MonoBehaviour
         {
             _touch = Input.GetTouch(0);
 
-            GameManager.Instance.gameState = GameManager.GameStates.START;
+            if(!isGameStarted)
+            {
+                GameManager.Instance.gameState = GameManager.GameStates.START;
+                transform.GetChild(0).GetComponent<Player>().PlayWalkAnim();
+                isGameStarted = true;
+            }
             
             if(_touch.phase == TouchPhase.Moved)
             {

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
         WİN,
         LOSE
     }
+    
     public GameStates gameState;
     public static GameManager Instance;
     public GameObject firstPlayer;
@@ -46,7 +47,11 @@ public class GameManager : MonoBehaviour
     public void CheckGameOver()
     {
         if(GameManager.Instance.playersInTeam.Count <= 0)
+        {
             Time.timeScale = 0;
+            gameState = GameStates.LOSE;
+        }
+            
     }
     public void MoveAllTeamToMiddle(float timeToWait)
     {

@@ -7,12 +7,15 @@ public abstract class IncreasePlayer : MonoBehaviour
     public int increaseAmount;
     public virtual void IncreasePlayerCount()
     {
-
+        
     }
     public void OnTouch()
     {
         gameObject.GetComponent<BoxCollider>().isTrigger = false;
         gameObject.SetActive(false);
+        IncreasePlayerCount();
+        GameManager.Instance.UpdatePlayerCountText();
+        GameManager.Instance.MoveAllTeamToMiddle(0);
     }
 
 }

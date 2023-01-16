@@ -6,6 +6,7 @@ public class IncreaseByPlus : IncreasePlayer
 {
     public override void IncreasePlayerCount()
     {
+        
         for(int i =0; i < increaseAmount; i++)
         {
             GameObject playerClone = ObjectPool.objPool.GetObjectFromPool();
@@ -15,6 +16,7 @@ public class IncreaseByPlus : IncreasePlayer
                 GameManager.Instance.playersInTeam.Add(playerClone);
                 playerClone.GetComponent<Player>().PlayerPositioning();
             } 
+            
         }
     }
 
@@ -22,10 +24,7 @@ public class IncreaseByPlus : IncreasePlayer
     {
         if (other.CompareTag("Player"))
         {
-            OnTouch();    
-            IncreasePlayerCount();
-            GameManager.Instance.UpdatePlayerCountText();
-            GameManager.Instance.MoveAllTeamToMiddle(0);
+            OnTouch();
         }
         
     }

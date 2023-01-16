@@ -13,13 +13,13 @@ public class HammerObstacle : Obstacle
     {
         transform.Rotate(moveSpeed * Time.deltaTime,0,0);
 
-        if(transform.rotation.eulerAngles.x >= 86)
+        if(transform.rotation.eulerAngles.x >= 85)
         {
-            moveSpeed = -45;
+            moveSpeed = -15;
         }
-        if(transform.rotation.eulerAngles.x <= 10)
+        if(transform.rotation.eulerAngles.x <= 18)
         {
-            moveSpeed = 45;
+            moveSpeed = 75;
         }
     }
 

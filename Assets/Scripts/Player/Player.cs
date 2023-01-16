@@ -15,10 +15,10 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if(GameManager.Instance.gameState == GameManager.GameStates.START)
-            PlayWalkAnim();
-        else
-            PlayIdleAnim();
+        // if(GameManager.Instance.gameState == GameManager.GameStates.START)
+        //     PlayWalkAnim();
+        // else
+        //     PlayIdleAnim();
     }
 
     public void PlayWalkAnim()
@@ -43,6 +43,17 @@ public class Player : MonoBehaviour
     {
         ObjectPool.objPool.ReturnToPool(this.gameObject);
         GameManager.Instance.playersInTeam.Remove(this.gameObject);
+        // StartCoroutine(DieRoutine());
+    }
+
+    IEnumerator DieRoutine()
+    {
+        gameObject.transform.parent = null;
+        PlayIdleAnim();
+        yield return new WaitForSeconds(0.1f);
+
+        ObjectPool.objPool.ReturnToPool(this.gameObject);
+        GameManager.Instance.playersInTeam.Remove(this.gameObject);
     }
 
     public void MoveToMiddle()
@@ -52,19 +63,19 @@ public class Player : MonoBehaviour
 
     IEnumerator MoveToMiddleRoutine()
     {
-        Transform parent = transform.parent;
         bool moving = true;
         float timer = 0;
         while(moving)
         {
+            yield return new WaitForEndOfFrame();
             timer += Time.deltaTime;
             transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3(0f,0f,0f),0.05f);
-            if(timer > 1.3f)
+            if(timer > 1f)
             {
                 moving = false;
             }
                 
-            yield return new WaitForEndOfFrame();
+            
         }
         
         
@@ -74,14 +85,10 @@ public class Player : MonoBehaviour
         if(other.CompareTag("LeftBorder"))
         {
             GameManager.Instance.canMoveLeft = false;
-            // GameManager.Instance.MoveAllTeamToMiddle(0);
-            Debug.Log("Left border touched");
         }
         if(other.CompareTag("RightBorder"))
         {   
-            // GameManager.Instance.MoveAllTeamToMiddle(0);
             GameManager.Instance.canMoveRight = false;
-            Debug.Log("right border touched");
         }
     }
 

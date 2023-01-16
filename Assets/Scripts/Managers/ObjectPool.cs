@@ -48,7 +48,7 @@ public class ObjectPool : MonoBehaviour
 
     public void ReturnToPool(GameObject obj)
     {
-        playerQueue.Enqueue(obj);
         obj.SetActive(false);
+        playerQueue.Enqueue(obj);
     }
 }
