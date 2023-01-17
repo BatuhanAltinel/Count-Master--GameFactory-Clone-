@@ -16,6 +16,23 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if(GameManager.Instance.gameState == GameManager.GameStates.START)
+        {
+            CameraNormalFollow();
+        }else if(GameManager.Instance.gameState == GameManager.GameStates.ATTACK)
+        {
+            OnAttackCameraFollow();
+        }
+    }
+
+    void CameraNormalFollow()
+    {
+        offSet = new Vector3(0,27.3f,-20.6f);
+        transform.position = Vector3.Lerp(transform.position,followTransform.position + offSet,moveSpeed * Time.deltaTime);
+    }
+    void OnAttackCameraFollow()
+    {
+        offSet = new Vector3(0,18,-19.6f);
         transform.position = Vector3.Lerp(transform.position,followTransform.position + offSet,moveSpeed * Time.deltaTime);
     }
 }

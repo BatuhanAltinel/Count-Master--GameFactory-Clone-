@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
                 isGameStarted = true;
             }
             
-            if(_touch.phase == TouchPhase.Moved)
+            if(_touch.phase == TouchPhase.Moved && GameManager.Instance.gameState == GameManager.GameStates.START)
             {
                 if(GameManager.Instance.canMoveLeft)
                 {
@@ -52,7 +52,17 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
                 
+            }else if(_touch.phase == TouchPhase.Moved && GameManager.Instance.gameState == GameManager.GameStates.ATTACK)
+            {
+                Vector3 tarPos = GameManager.Instance.targetTransform.position;
+                Vector3 dir = (tarPos - transform.position).normalized;
+                transform.Translate(dir * Time.deltaTime * 0.1f);
+                // transform.position = Vector3.MoveTowards(transform.position,tarPos,0.1f);
             }
         }
+
     }
+
+
+    
 }

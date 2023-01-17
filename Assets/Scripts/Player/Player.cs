@@ -5,20 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Animator anim;
-    PlayerMovement playerMovement;
 
     void Start()
     {
-        anim = GetComponent<Animator>(); 
-        playerMovement = GetComponentInParent<PlayerMovement>();  
-    }
-
-    void Update()
-    {
-        // if(GameManager.Instance.gameState == GameManager.GameStates.START)
-        //     PlayWalkAnim();
-        // else
-        //     PlayIdleAnim();
+        anim = GetComponent<Animator>();
     }
 
     public void PlayWalkAnim()
@@ -49,10 +39,12 @@ public class Player : MonoBehaviour
     IEnumerator DieRoutine()
     {
         gameObject.transform.parent = null;
-        PlayIdleAnim();
-        yield return new WaitForSeconds(0.1f);
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        // play particle
+        yield return new WaitForSeconds(0.2f);
 
         ObjectPool.objPool.ReturnToPool(this.gameObject);
+        gameObject.GetComponent<MeshRenderer>().enabled = true;
         GameManager.Instance.playersInTeam.Remove(this.gameObject);
     }
 
@@ -74,12 +66,10 @@ public class Player : MonoBehaviour
             {
                 moving = false;
             }
-                
-            
         }
         
-        
     }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("LeftBorder"))
@@ -89,6 +79,12 @@ public class Player : MonoBehaviour
         if(other.CompareTag("RightBorder"))
         {   
             GameManager.Instance.canMoveRight = false;
+        }
+        if(other.CompareTag("EnemyParent"))
+        {
+            GameManager.Instance.gameState = GameManager.GameStates.ATTACK;
+            GameManager.Instance.targetTransform = other.gameObject.transform;
+            GameManager.Instance.LookAtThe();
         }
     }
 

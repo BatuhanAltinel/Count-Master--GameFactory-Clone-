@@ -17,8 +17,16 @@ public class FollowTransformMovement : MonoBehaviour
     }
     void MoveForward()
     {
-
         if(GameManager.Instance.gameState == GameManager.GameStates.START)
+        {
+            moveSpeed = 15f;
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        }
+        else if(GameManager.Instance.gameState == GameManager.GameStates.ATTACK)
+        {
+            moveSpeed = 0f;
+            transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+        }
+            
     }
 }

@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public enum GameStates{
         START,
         STOP,
+        
+        ATTACK,
         END,
         WİN,
         LOSE
@@ -15,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameStates gameState;
     public static GameManager Instance;
     public GameObject firstPlayer;
+    public Transform targetTransform;
     public List<GameObject> playersInTeam = new List<GameObject>();
 
     public TextMeshProUGUI playerCountText;
@@ -53,6 +56,14 @@ public class GameManager : MonoBehaviour
         }
             
     }
+
+    public void LookAtThe()
+    {   
+        for (int i = 0; i < playersInTeam.Count; i++)
+        {
+            playersInTeam[i].transform.rotation = Quaternion.LookRotation(targetTransform.position);
+        }
+    }   
     public void MoveAllTeamToMiddle(float timeToWait)
     {
         if(isTouchedInteractable)
