@@ -37,7 +37,6 @@ public class Enemy : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             Die();
-            // play particle
             other.gameObject.GetComponent<Player>().Die();
             runPos = other.transform.parent.position;
         }

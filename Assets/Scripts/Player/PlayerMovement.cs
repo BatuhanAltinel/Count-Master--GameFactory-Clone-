@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.touchCount > 0)
         {
             _touch = Input.GetTouch(0);
-
+            UIManager.instance.InActiveSlideBar();
             if(!isGameStarted)
             {
                 GameManager.Instance.gameState = GameManager.GameStates.START;

@@ -41,7 +41,7 @@ public class EnemyParent : MonoBehaviour
         if(enemies.Count <= 0)
         {
             GameManager.Instance.gameState = GameManager.GameStates.START;
-            GameManager.Instance.MoveAllTeamToMiddle(0.1f);
+            GameManager.Instance.MoveAllTeamToMiddle(0.2f);
             gameObject.SetActive(false);
         }
     }

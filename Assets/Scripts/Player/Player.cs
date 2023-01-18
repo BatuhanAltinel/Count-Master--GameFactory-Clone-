@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
     Animator anim;
     Rigidbody rb;
-
+    bool moving;
+    [SerializeField] ParticleSystem splashParticle;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
         anim.SetBool("IsWalk",true);
     }
 
-    void PlayIdleAnim()
+    public void PlayIdleAnim()
     {
         anim.SetBool("IsWalk",false);
     }
@@ -38,23 +39,25 @@ public class Player : MonoBehaviour
     
     public void Die()
     {
-        ObjectPool.objPool.ReturnToPool(this.gameObject);
-        GameManager.Instance.playersInTeam.Remove(this.gameObject);
-        GameManager.Instance.UpdatePlayerCountText();
-        GameManager.Instance.CheckGameOver();
-        // StartCoroutine(DieRoutine());
+        // ObjectPool.objPool.ReturnToPool(this.gameObject);
+        // GameManager.Instance.playersInTeam.Remove(this.gameObject);
+        // GameManager.Instance.UpdatePlayerCountText();
+        // GameManager.Instance.CheckGameOver();
+        StartCoroutine(DieRoutine());
     }
 
     IEnumerator DieRoutine()
     {
-        gameObject.transform.parent = null;
+        splashParticle.Play();
         gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-        // play particle
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.6f);
 
+        splashParticle.Stop();
         ObjectPool.objPool.ReturnToPool(this.gameObject);
-        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         GameManager.Instance.playersInTeam.Remove(this.gameObject);
+        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
+         GameManager.Instance.UpdatePlayerCountText();
+        GameManager.Instance.CheckGameOver();
     }
 
     public void MoveToMiddle()
@@ -64,17 +67,18 @@ public class Player : MonoBehaviour
 
     IEnumerator MoveToMiddleRoutine()
     {
-        bool moving = true;
+        moving = true;
         float timer = 0;
         while(moving)
         {
             yield return new WaitForEndOfFrame();
             timer += Time.deltaTime;
             transform.localPosition = Vector3.Lerp(transform.localPosition,new Vector3(0f,0f,0f),0.05f);
-            if(timer > 1f)
+            if(timer > 0.05f)
             {
                 moving = false;
             }
+            // moving = false;
         }
         
     }
@@ -99,14 +103,21 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.gameState = GameManager.GameStates.ATTACK;
             GameManager.Instance.targetTransform = other.gameObject.transform;
-            GameManager.Instance.LookAtThe();
+            GameManager.Instance.LookAtThe(GameManager.Instance.targetTransform.position);
         }
         if(other.CompareTag("Space"))
         {
-            // gameObject.transform.parent = null;
-            // GameManager.Instance.playersInTeam.Remove(gameObject);
-            // rb.AddForce(Vector3.down * 1000f * Time.deltaTime,ForceMode.Impulse);
             Die();
+        }
+        if(other.CompareTag("Finish"))
+        {
+            GameManager.Instance.gameState = GameManager.GameStates.WIN;
+            GameManager.Instance.AllTeamPlayIdleAnim();
+            UIManager.instance.WinPanelActivation();
+        }
+        if(other.CompareTag("Player"))
+        {
+            moving = false;
         }
     }
 

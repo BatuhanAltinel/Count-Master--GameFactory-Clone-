@@ -422,7 +422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6155791908754384453, guid: dbdb318c78133c04ea15fb9b6f9a4645, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6155791908754384453, guid: dbdb318c78133c04ea15fb9b6f9a4645, type: 3}
       propertyPath: m_LocalPosition.z
@@ -460,10 +460,23 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sman
       objectReference: {fileID: 0}
+    - target: {fileID: 7060902493601014555, guid: dbdb318c78133c04ea15fb9b6f9a4645, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9186000070466538813, guid: dbdb318c78133c04ea15fb9b6f9a4645, type: 3}
+      propertyPath: splashParticle
+      value: 
+      objectReference: {fileID: 3495847245267834893}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbdb318c78133c04ea15fb9b6f9a4645, type: 3}
 --- !u!4 &5794664702007167897 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6155791908754384453, guid: dbdb318c78133c04ea15fb9b6f9a4645, type: 3}
+  m_PrefabInstance: {fileID: 362272554370903516}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &3495847245267834893 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3856403393162589649, guid: dbdb318c78133c04ea15fb9b6f9a4645, type: 3}
   m_PrefabInstance: {fileID: 362272554370903516}
   m_PrefabAsset: {fileID: 0}

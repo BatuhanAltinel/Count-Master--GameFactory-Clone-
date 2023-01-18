@@ -12,7 +12,7 @@ public class FloatingObstacle : Obstacle
     void Start()
     {
         targetPos = new Vector3(targetXPoint,transform.position.y,transform.position.z);
-        moveSpeed = 5f;
+        moveSpeed = 8f;
     }
 
     void Update()

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
         STOP,
         ATTACK,
         END,
-        WİN,
+        WIN,
         LOSE
     }
     
@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public bool canMoveRight;
     public bool canMoveLeft;
     public bool isTouchedInteractable = true;
-    float positioningRandomRadius = .9f;
+    float positioningRandomRadius = .5f;
 
     public float GetRandomRadius{
         get{return Random.Range(-positioningRandomRadius,positioningRandomRadius);} 
@@ -57,11 +57,11 @@ public class GameManager : MonoBehaviour
             
     }
 
-    public void LookAtThe()
+    public void LookAtThe(Vector3 targetTrans)
     {   
         for (int i = 0; i < playersInTeam.Count; i++)
         {
-            playersInTeam[i].transform.LookAt(targetTransform.position);
+            playersInTeam[i].transform.LookAt(targetTrans);
         }
     }   
     public void MoveAllTeamToMiddle(float timeToWait)
@@ -80,5 +80,13 @@ public class GameManager : MonoBehaviour
             playersInTeam[i].GetComponent<Player>().MoveToMiddle();
         }
         isTouchedInteractable = true;
+    }
+
+    public void AllTeamPlayIdleAnim()
+    {
+        for (int i = 0; i < playersInTeam.Count; i++)
+        {
+            playersInTeam[i].GetComponent<Player>().PlayIdleAnim();
+        }
     }
 }

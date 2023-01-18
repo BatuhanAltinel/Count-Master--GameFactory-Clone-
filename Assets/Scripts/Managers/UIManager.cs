@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     [SerializeField] GameObject losePanel;
     [SerializeField] GameObject winPanel;
+    [SerializeField] GameObject playerCountCanvas;
+    [SerializeField] GameObject slideBar;
     
     void Awake()
     {
@@ -17,9 +19,14 @@ public class UIManager : MonoBehaviour
             instance = this;
         }else
             Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
+        
+        slideBar.SetActive(true);
     }
 
+    public void InActiveSlideBar()
+    {
+        slideBar.SetActive(false);
+    }
     public void RestartGame()
     {
         SceneManager.LoadScene(0);
@@ -27,16 +34,29 @@ public class UIManager : MonoBehaviour
 
     public void WinPanelActivation()
     {
-        if(GameManager.Instance.gameState == GameManager.GameStates.WİN)
+        if(GameManager.Instance.gameState == GameManager.GameStates.WIN)
+        {
             winPanel.SetActive(true);
+            playerCountCanvas.SetActive(false);
+        }   
         else
+        {
             winPanel.SetActive(false);
+            playerCountCanvas.SetActive(true);
+        }
+            
     }
     public void LosePanelActiviation()
     {
         if(GameManager.Instance.gameState == GameManager.GameStates.LOSE)
+        {
             losePanel.SetActive(true);
+            playerCountCanvas.SetActive(false);
+        }   
         else
+        {
             losePanel.SetActive(false);
+            playerCountCanvas.SetActive(true);
+        }
     }
 }

@@ -7,6 +7,7 @@ public class CameraFollow : MonoBehaviour
     Camera cam;
     [SerializeField] Transform followTransform;
     [SerializeField] Vector3 offSet;
+    [SerializeField] Quaternion endLevelRot;
     [SerializeField] float moveSpeed = 1.2f;
     void Awake()
     {
@@ -17,12 +18,11 @@ public class CameraFollow : MonoBehaviour
     void LateUpdate()
     {
         if(GameManager.Instance.gameState == GameManager.GameStates.START)
-        {
             CameraNormalFollow();
-        }else if(GameManager.Instance.gameState == GameManager.GameStates.ATTACK)
-        {
+        else if(GameManager.Instance.gameState == GameManager.GameStates.ATTACK)
             OnAttackCameraFollow();
-        }
+        else if(GameManager.Instance.gameState == GameManager.GameStates.WIN)
+            OnEndLevelFollow();
     }
 
     void CameraNormalFollow()
@@ -34,5 +34,13 @@ public class CameraFollow : MonoBehaviour
     {
         offSet = new Vector3(0,18,-19.6f);
         transform.position = Vector3.Lerp(transform.position,followTransform.position + offSet,moveSpeed * Time.deltaTime);
+    }
+    void OnEndLevelFollow()
+    {
+        endLevelRot = Quaternion.Euler(27.6f,-80f,0);
+        offSet = new Vector3(35.2f,21.7f,-7f);
+
+        transform.position = Vector3.Lerp(transform.position,followTransform.position + offSet,moveSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Lerp(transform.rotation,endLevelRot,0.05f);
     }
 }

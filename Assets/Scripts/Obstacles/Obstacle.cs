@@ -16,7 +16,7 @@ public abstract class Obstacle : MonoBehaviour
             obj.GetComponent<Player>().Die();
             GameManager.Instance.UpdatePlayerCountText();
             GameManager.Instance.CheckGameOver();
-            GameManager.Instance.MoveAllTeamToMiddle(1.5f);
+            GameManager.Instance.MoveAllTeamToMiddle(1.2f);
         }
         
     }

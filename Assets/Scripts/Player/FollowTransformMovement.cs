@@ -19,12 +19,12 @@ public class FollowTransformMovement : MonoBehaviour
     {
         if(GameManager.Instance.gameState == GameManager.GameStates.START)
         {
-            moveSpeed = 15f;
+            moveSpeed = 18f;
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }
         else if(GameManager.Instance.gameState == GameManager.GameStates.ATTACK)
         {
-            moveSpeed = 0.1f;
+            moveSpeed = 0.5f;
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }
             
