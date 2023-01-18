@@ -24,7 +24,7 @@ public class FollowTransformMovement : MonoBehaviour
         }
         else if(GameManager.Instance.gameState == GameManager.GameStates.ATTACK)
         {
-            moveSpeed = 0f;
+            moveSpeed = 0.1f;
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
         }
             

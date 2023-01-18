@@ -7,7 +7,6 @@ public class GameManager : MonoBehaviour
     public enum GameStates{
         START,
         STOP,
-        
         ATTACK,
         END,
         WİN,
@@ -36,6 +35,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+
         canMoveRight = true;
         canMoveLeft = true;
         gameState = GameStates.STOP;
@@ -51,8 +51,8 @@ public class GameManager : MonoBehaviour
     {
         if(GameManager.Instance.playersInTeam.Count <= 0)
         {
-            Time.timeScale = 0;
             gameState = GameStates.LOSE;
+            UIManager.instance.LosePanelActiviation();
         }
             
     }
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     {   
         for (int i = 0; i < playersInTeam.Count; i++)
         {
-            playersInTeam[i].transform.rotation = Quaternion.LookRotation(targetTransform.position);
+            playersInTeam[i].transform.LookAt(targetTransform.position);
         }
     }   
     public void MoveAllTeamToMiddle(float timeToWait)

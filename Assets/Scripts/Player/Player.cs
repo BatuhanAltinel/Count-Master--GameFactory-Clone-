@@ -5,10 +5,17 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     Animator anim;
+    Rigidbody rb;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        CheckOnGround();
     }
 
     public void PlayWalkAnim()
@@ -33,18 +40,20 @@ public class Player : MonoBehaviour
     {
         ObjectPool.objPool.ReturnToPool(this.gameObject);
         GameManager.Instance.playersInTeam.Remove(this.gameObject);
+        GameManager.Instance.UpdatePlayerCountText();
+        GameManager.Instance.CheckGameOver();
         // StartCoroutine(DieRoutine());
     }
 
     IEnumerator DieRoutine()
     {
         gameObject.transform.parent = null;
-        gameObject.GetComponent<MeshRenderer>().enabled = false;
+        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
         // play particle
         yield return new WaitForSeconds(0.2f);
 
         ObjectPool.objPool.ReturnToPool(this.gameObject);
-        gameObject.GetComponent<MeshRenderer>().enabled = true;
+        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
         GameManager.Instance.playersInTeam.Remove(this.gameObject);
     }
 
@@ -70,6 +79,12 @@ public class Player : MonoBehaviour
         
     }
 
+    void CheckOnGround()
+    {
+        if(transform.position.y < -5f)
+            Die();
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("LeftBorder"))
@@ -85,6 +100,13 @@ public class Player : MonoBehaviour
             GameManager.Instance.gameState = GameManager.GameStates.ATTACK;
             GameManager.Instance.targetTransform = other.gameObject.transform;
             GameManager.Instance.LookAtThe();
+        }
+        if(other.CompareTag("Space"))
+        {
+            // gameObject.transform.parent = null;
+            // GameManager.Instance.playersInTeam.Remove(gameObject);
+            // rb.AddForce(Vector3.down * 1000f * Time.deltaTime,ForceMode.Impulse);
+            Die();
         }
     }
 

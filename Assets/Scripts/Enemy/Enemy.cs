@@ -27,27 +27,18 @@ public class Enemy : MonoBehaviour
     void Die()
     {
         gameObject.SetActive(false);
+        transform.GetComponentInParent<EnemyParent>().enemies.Remove(gameObject);
+        transform.GetComponentInParent<EnemyParent>().UpdatePlayerCountText();
+        transform.GetComponentInParent<EnemyParent>().CheckForDefeat();
     }
     
-    public void RunTo()
-    {
-        Vector3 dir = (transform.position - runPos).normalized;
-        transform.localPosition = Vector3.Lerp(transform.position,runPos,0.1f);
-        Debug.Log(runPos);
-        // transform.Translate(dir * Time.deltaTime * 0.2f);
-    }
     void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
             Die();
             // play particle
-            transform.GetComponentInParent<EnemyParent>().enemies.Remove(gameObject);
-            transform.GetComponentInParent<EnemyParent>().UpdatePlayerCountText();
-            transform.GetComponentInParent<EnemyParent>().CheckForDefeat();
             other.gameObject.GetComponent<Player>().Die();
-            GameManager.Instance.UpdatePlayerCountText();
-            GameManager.Instance.CheckGameOver();
             runPos = other.transform.parent.position;
         }
     }
