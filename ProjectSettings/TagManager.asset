@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - EnemyParent
   - Space
+  - EndCube
   layers:
   - Default
   - TransparentFX

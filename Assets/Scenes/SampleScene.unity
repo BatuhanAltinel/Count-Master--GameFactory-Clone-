@@ -388,7 +388,7 @@ MonoBehaviour:
   firstPlayer: {fileID: 68348717}
   targetTransform: {fileID: 0}
   playersInTeam: []
-  levelEndAct: {fileID: 784962930}
+  levelEndAct: {fileID: 531547283}
   playerCountText: {fileID: 259863752}
   canMoveRight: 0
   canMoveLeft: 0
@@ -589,6 +589,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &531547283 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 531547283, guid: 6be8ac775cee62e4bbbeaae054b6d0c8, type: 3}
+  m_PrefabInstance: {fileID: 9113641270005237169}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d97a726f788c83746a577a6b6a880168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &596476891
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,17 +739,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 73.2, y: -30, z: 0}
---- !u!114 &784962930 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9113641269313736899, guid: 6be8ac775cee62e4bbbeaae054b6d0c8, type: 3}
-  m_PrefabInstance: {fileID: 9113641270005237169}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d97a726f788c83746a577a6b6a880168, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &836561099
 GameObject:
   m_ObjectHideFlags: 0
@@ -973,13 +973,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.36487678, y: 0, z: 0, w: 0.93105584}
+  m_LocalRotation: {x: 0.37136775, y: 0, z: 0, w: 0.9284859}
   m_LocalPosition: {x: 0, y: 27.3, z: -20.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 42.8, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 43.6, y: 0, z: 0}
 --- !u!95 &963194229
 Animator:
   serializedVersion: 3
@@ -1014,8 +1014,8 @@ MonoBehaviour:
   followTransform: {fileID: 347294213}
   offSet: {x: 0, y: 27.3, z: -20.6}
   onAttackOffset: {x: 0, y: 18, z: -19.6}
-  onLevelEndOffset: {x: 35.2, y: 21.7, z: -7}
-  endLevelRot: {x: -0.18272728, y: 0.62423307, z: -0.15332639, w: -0.743932}
+  onLevelEndOffset: {x: 43.1, y: 28.4, z: -9.3}
+  endLevelRot: {x: -0.19419384, y: 0.5639405, z: -0.13851713, w: -0.79061544}
   moveSpeed: 1.2
 --- !u!1 &1131371168
 GameObject:
@@ -2187,7 +2187,7 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 9113641269313736899, guid: 6be8ac775cee62e4bbbeaae054b6d0c8, type: 3}
+    - target: {fileID: 531547283, guid: 6be8ac775cee62e4bbbeaae054b6d0c8, type: 3}
       propertyPath: playerParent
       value: 
       objectReference: {fileID: 347294212}
@@ -2205,7 +2205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9113641270100508962, guid: 6be8ac775cee62e4bbbeaae054b6d0c8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 805.5
+      value: 803
       objectReference: {fileID: 0}
     - target: {fileID: 9113641270100508962, guid: 6be8ac775cee62e4bbbeaae054b6d0c8, type: 3}
       propertyPath: m_LocalRotation.w

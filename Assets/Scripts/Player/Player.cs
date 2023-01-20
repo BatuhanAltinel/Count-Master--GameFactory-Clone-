@@ -80,7 +80,6 @@ public class Player : MonoBehaviour
             {
                 moving = false;
             }
-            // moving = false;
         }
         
     }
@@ -117,10 +116,17 @@ public class Player : MonoBehaviour
             GameManager.Instance.AllTeamPlayIdleAnim();
             // UIManager.instance.WinPanelActivation();
             GameManager.Instance.LevelEnding();
+            UIManager.instance.DeActivePlayerCountCanvas();
         }
         if(other.CompareTag("Player"))
         {
             moving = false;
+        }
+        if(other.CompareTag("EndCube"))
+        {
+            transform.parent = null;
+            PlayIdleAnim();
+            
         }
     }
 

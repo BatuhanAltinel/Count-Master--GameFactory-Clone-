@@ -23,24 +23,25 @@ public class CameraFollow : MonoBehaviour
             CameraNormalFollow();
         else if(GameManager.Instance.gameState == GameManager.GameStates.ATTACK)
             OnAttackCameraFollow();
-        else if(GameManager.Instance.gameState == GameManager.GameStates.WIN)
+        else if(GameManager.Instance.gameState == GameManager.GameStates.WIN || 
+                GameManager.Instance.gameState == GameManager.GameStates.END)
             OnEndLevelFollow();
     }
 
     void CameraNormalFollow()
     {
-        offSet = new Vector3(0,27.3f,-20.6f);
+        // offSet = new Vector3(0,27.3f,-20.6f);
         transform.position = Vector3.Lerp(transform.position,followTransform.position + offSet,moveSpeed * Time.deltaTime);
     }
     void OnAttackCameraFollow()
     {
-        onAttackOffset = new Vector3(0,18,-19.6f);
+        // onAttackOffset = new Vector3(0,18,-19.6f);
         transform.position = Vector3.Lerp(transform.position,followTransform.position + onAttackOffset,moveSpeed * Time.deltaTime);
     }
     void OnEndLevelFollow()
     {
-        endLevelRot = Quaternion.Euler(27.6f,-80f,0);
-        onLevelEndOffset = new Vector3(35.2f,21.7f,-7f);
+        // endLevelRot = Quaternion.Euler(27.6f,-80f,0);
+        // onLevelEndOffset = new Vector3(35.2f,21.7f,-7f);
 
         transform.position = Vector3.Lerp(transform.position,followTransform.position + onLevelEndOffset,moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation,endLevelRot,0.05f);

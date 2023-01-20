@@ -57,7 +57,6 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 tarPos = GameManager.Instance.targetTransform.position;
                 Vector3 dir = (tarPos - transform.position).normalized;
                 transform.Translate(dir * Time.deltaTime * 0.1f);
-                // transform.position = Vector3.MoveTowards(transform.position,tarPos,0.1f);
             }
         }
 

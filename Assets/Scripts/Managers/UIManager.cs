@@ -59,4 +59,9 @@ public class UIManager : MonoBehaviour
             playerCountCanvas.SetActive(true);
         }
     }
+
+    public void DeActivePlayerCountCanvas()
+    {
+        playerCountCanvas.SetActive(false);
+    }
 }

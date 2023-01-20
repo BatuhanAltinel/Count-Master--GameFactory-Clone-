@@ -17,7 +17,8 @@ public class FollowTransformMovement : MonoBehaviour
     }
     void MoveForward()
     {
-        if(GameManager.Instance.gameState == GameManager.GameStates.START)
+        if(GameManager.Instance.gameState == GameManager.GameStates.START ||
+            GameManager.Instance.gameState == GameManager.GameStates.END )
         {
             moveSpeed = 18f;
             transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);

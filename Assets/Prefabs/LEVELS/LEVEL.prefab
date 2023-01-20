@@ -1891,6 +1891,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6265605097814514812}
     m_Modifications:
+    - target: {fileID: 2232256016517086922, guid: 50e04f44bb5caa543b34600dc5a469f0, type: 3}
+      propertyPath: increaseAmount
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 3427031264955851044, guid: 50e04f44bb5caa543b34600dc5a469f0, type: 3}
       propertyPath: m_Name
       value: Plus 10 (1)
@@ -1909,7 +1913,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7524972935335733190, guid: 50e04f44bb5caa543b34600dc5a469f0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 617.8
+      value: 677
       objectReference: {fileID: 0}
     - target: {fileID: 7524972935335733190, guid: 50e04f44bb5caa543b34600dc5a469f0, type: 3}
       propertyPath: m_LocalRotation.w

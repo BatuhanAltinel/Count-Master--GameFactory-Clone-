@@ -90,6 +90,13 @@ public class GameManager : MonoBehaviour
             playersInTeam[i].GetComponent<Player>().PlayIdleAnim();
         }
     }
+    public void AllTeamPlayWalkAnim()
+    {
+        for (int i = 0; i < playersInTeam.Count; i++)
+        {
+            playersInTeam[i].GetComponent<Player>().PlayWalkAnim();
+        }
+    }
 
     public void LevelEnding()
     {

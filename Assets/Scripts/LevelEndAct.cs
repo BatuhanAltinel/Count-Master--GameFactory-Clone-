@@ -5,15 +5,12 @@ using UnityEngine;
 public class LevelEndAct : MonoBehaviour
 {
     [SerializeField] GameObject playerParent;
+    [SerializeField] GameObject EndLine;
     float yOffset = 3.9f;
     float xOffset = 1.8f;
     float startYPoint = 0;
     float startXPoint = 0;
     int PlayerInRowInTower = 1;
-    void Start()
-    {
-        
-    }
 
     public void MakingTower()
     {
@@ -28,8 +25,7 @@ public class LevelEndAct : MonoBehaviour
                 playerCount--;
                 Vector3 newPos = new Vector3(playerParent.transform.localPosition.x,startYPoint,playerParent.transform.localPosition.z);
                 playerParent.transform.localPosition = newPos;
-                // MoveToPosition(GameManager.Instance.playersInTeam[playerCount],
-                //                 new Vector3(startXPoint,0,playerParent.transform.position.z));
+                
                 GameManager.Instance.playersInTeam[playerCount].transform.localPosition = new Vector3(startXPoint,0,playerParent.transform.position.z);
                 GameManager.Instance.playersInTeam[playerCount].transform.parent = playerParent.transform;
                 GameManager.Instance.playersInTeam[playerCount].name = i.ToString();
@@ -41,20 +37,24 @@ public class LevelEndAct : MonoBehaviour
             startXPoint = (xOffset * (PlayerInRowInTower)) / (-2);
             startYPoint += yOffset;
             
-            
-            // if(PlayerInRowInTower >= 13)
-            // {
-            //     PlayerInRowInTower = 13;
-            //     if(playerCount < 13)
-            //         break;
-            // }
                 
             if(playerCount < PlayerInRowInTower)
+            {
                 PlayerInRowInTower = playerCount;
+                for (int i = 0; i < PlayerInRowInTower; i++)
+                {
+                    playerCount--;
+                    ObjectPool.objPool.ReturnToPool(GameManager.Instance.playersInTeam[playerCount]);
+                    
+                }
+                
+            }
+                
         }
-        
-        
+
+        RunToWalls();
     }
+
 
     void AllPlayersParentNull()
     {
@@ -64,24 +64,12 @@ public class LevelEndAct : MonoBehaviour
         }
     }
 
-    void MoveToPosition(GameObject obj,Vector3 targetPos)
+    void RunToWalls()
     {
-        StartCoroutine(MoveToPositionRoutine(obj,targetPos));
+        EndLine.GetComponent<BoxCollider>().enabled = false;
+        GameManager.Instance.AllTeamPlayWalkAnim();
+        GameManager.Instance.gameState = GameManager.GameStates.END;
+        playerParent.transform.Translate(Vector3.forward * 5f * Time.deltaTime);
     }
 
-    IEnumerator MoveToPositionRoutine(GameObject obj,Vector3 targetPos)
-    {
-        bool canReach = false;
-        float elapsedTime = 0;
-        while(!canReach)
-        {
-            yield return new WaitForEndOfFrame();
-            elapsedTime += Time.deltaTime;
-            float t = Mathf.Clamp01(elapsedTime/2);
-            obj.transform.position = Vector3.Lerp(obj.transform.localPosition,targetPos,t);
-
-            if(Vector3.Distance(obj.transform.position,targetPos) < 0.01f)
-                canReach = true;
-        }
-    }
 }
