@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject firstPlayer;
     public Transform targetTransform;
     public List<GameObject> playersInTeam = new List<GameObject>();
+    public LevelEndAct levelEndAct;
 
     public TextMeshProUGUI playerCountText;
     public bool canMoveRight;
@@ -88,5 +89,10 @@ public class GameManager : MonoBehaviour
         {
             playersInTeam[i].GetComponent<Player>().PlayIdleAnim();
         }
+    }
+
+    public void LevelEnding()
+    {
+        levelEndAct.MakingTower();
     }
 }

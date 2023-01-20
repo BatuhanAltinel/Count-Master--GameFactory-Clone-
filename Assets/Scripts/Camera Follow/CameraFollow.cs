@@ -7,6 +7,8 @@ public class CameraFollow : MonoBehaviour
     Camera cam;
     [SerializeField] Transform followTransform;
     [SerializeField] Vector3 offSet;
+    [SerializeField] Vector3 onAttackOffset;
+    [SerializeField] Vector3 onLevelEndOffset;
     [SerializeField] Quaternion endLevelRot;
     [SerializeField] float moveSpeed = 1.2f;
     void Awake()
@@ -32,15 +34,15 @@ public class CameraFollow : MonoBehaviour
     }
     void OnAttackCameraFollow()
     {
-        offSet = new Vector3(0,18,-19.6f);
-        transform.position = Vector3.Lerp(transform.position,followTransform.position + offSet,moveSpeed * Time.deltaTime);
+        onAttackOffset = new Vector3(0,18,-19.6f);
+        transform.position = Vector3.Lerp(transform.position,followTransform.position + onAttackOffset,moveSpeed * Time.deltaTime);
     }
     void OnEndLevelFollow()
     {
         endLevelRot = Quaternion.Euler(27.6f,-80f,0);
-        offSet = new Vector3(35.2f,21.7f,-7f);
+        onLevelEndOffset = new Vector3(35.2f,21.7f,-7f);
 
-        transform.position = Vector3.Lerp(transform.position,followTransform.position + offSet,moveSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position,followTransform.position + onLevelEndOffset,moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation,endLevelRot,0.05f);
     }
 }

@@ -50,13 +50,15 @@ public class Player : MonoBehaviour
     {
         splashParticle.Play();
         gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+        GameManager.Instance.playersInTeam.Remove(this.gameObject);
+        GameManager.Instance.UpdatePlayerCountText();
+
         yield return new WaitForSeconds(0.6f);
 
         splashParticle.Stop();
-        ObjectPool.objPool.ReturnToPool(this.gameObject);
-        GameManager.Instance.playersInTeam.Remove(this.gameObject);
+        
         gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-         GameManager.Instance.UpdatePlayerCountText();
+        ObjectPool.objPool.ReturnToPool(this.gameObject);
         GameManager.Instance.CheckGameOver();
     }
 
@@ -113,7 +115,8 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.gameState = GameManager.GameStates.WIN;
             GameManager.Instance.AllTeamPlayIdleAnim();
-            UIManager.instance.WinPanelActivation();
+            // UIManager.instance.WinPanelActivation();
+            GameManager.Instance.LevelEnding();
         }
         if(other.CompareTag("Player"))
         {
