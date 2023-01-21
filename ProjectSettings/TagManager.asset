@@ -3,7 +3,14 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - LeftBorder
+  - RightBorder
+  - Enemy
+  - EnemyParent
+  - Space
+  - EndCube
+  - Won
   layers:
   - Default
   - TransparentFX
