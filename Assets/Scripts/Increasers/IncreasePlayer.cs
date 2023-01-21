@@ -15,7 +15,6 @@ public abstract class IncreasePlayer : MonoBehaviour
         gameObject.SetActive(false);
         IncreasePlayerCount();
         GameManager.Instance.UpdatePlayerCountText();
-        // GameManager.Instance.MoveAllTeamToMiddle(0);
     }
 
 }

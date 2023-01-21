@@ -1014,7 +1014,7 @@ MonoBehaviour:
   followTransform: {fileID: 347294213}
   offSet: {x: 0, y: 27.3, z: -20.6}
   onAttackOffset: {x: 0, y: 18, z: -19.6}
-  onLevelEndOffset: {x: 43.1, y: 28.4, z: -9.3}
+  onLevelEndOffset: {x: 43.1, y: 28.4, z: -19.3}
   endLevelRot: {x: -0.19419384, y: 0.5639405, z: -0.13851713, w: -0.79061544}
   moveSpeed: 1.2
 --- !u!1 &1131371168

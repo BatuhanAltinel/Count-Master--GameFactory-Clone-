@@ -6,17 +6,11 @@ public class Player : MonoBehaviour
 {
     Animator anim;
     Rigidbody rb;
-    bool moving;
     [SerializeField] ParticleSystem splashParticle;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
-    }
-
-    void Update()
-    {
-        CheckOnGround();
     }
 
     public void PlayWalkAnim()
@@ -39,26 +33,9 @@ public class Player : MonoBehaviour
     
     public void Die()
     {
-        // ObjectPool.objPool.ReturnToPool(this.gameObject);
-        // GameManager.Instance.playersInTeam.Remove(this.gameObject);
-        // GameManager.Instance.UpdatePlayerCountText();
-        // GameManager.Instance.CheckGameOver();
-        StartCoroutine(DieRoutine());
-    }
-
-    IEnumerator DieRoutine()
-    {
-        splashParticle.Play();
-        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+        ObjectPool.objPool.ReturnToPool(this.gameObject);
         GameManager.Instance.playersInTeam.Remove(this.gameObject);
         GameManager.Instance.UpdatePlayerCountText();
-
-        yield return new WaitForSeconds(0.6f);
-
-        splashParticle.Stop();
-        
-        gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = true;
-        ObjectPool.objPool.ReturnToPool(this.gameObject);
         GameManager.Instance.CheckGameOver();
     }
 
@@ -69,7 +46,7 @@ public class Player : MonoBehaviour
 
     IEnumerator MoveToMiddleRoutine()
     {
-        moving = true;
+        bool moving = true;
         float timer = 0;
         while(moving)
         {
@@ -82,12 +59,6 @@ public class Player : MonoBehaviour
             }
         }
         
-    }
-
-    void CheckOnGround()
-    {
-        if(transform.position.y < -5f)
-            Die();
     }
 
     void OnTriggerEnter(Collider other)
@@ -114,19 +85,25 @@ public class Player : MonoBehaviour
         {
             GameManager.Instance.gameState = GameManager.GameStates.WIN;
             GameManager.Instance.AllTeamPlayIdleAnim();
-            // UIManager.instance.WinPanelActivation();
             GameManager.Instance.LevelEnding();
             UIManager.instance.DeActivePlayerCountCanvas();
-        }
-        if(other.CompareTag("Player"))
-        {
-            moving = false;
         }
         if(other.CompareTag("EndCube"))
         {
             transform.parent = null;
             PlayIdleAnim();
-            
+            GameManager.Instance.playersInTeam.Remove(gameObject);
+            if(GameManager.Instance.playersInTeam.Count <= 0)
+            {
+                GameManager.Instance.gameState = GameManager.GameStates.WIN;
+                UIManager.instance.WinPanelActivation();
+            }
+        }
+        if(other.CompareTag("Won"))
+        {
+            PlayIdleAnim();
+            GameManager.Instance.gameState = GameManager.GameStates.WIN;
+            UIManager.instance.WinPanelActivation();
         }
     }
 
