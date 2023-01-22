@@ -41,11 +41,10 @@ public class CameraFollow : MonoBehaviour
     }
     void OnEndLevelFollow()
     {
-        endLevelRot = Quaternion.Euler(27.6f,289f,0);
-        onLevelEndOffset = new Vector3(43.1f,28.4f,-19.3f);
+        endLevelRot = Quaternion.Euler(33.1f,281.9f,0);
+        onLevelEndOffset = new Vector3(46.5f,37.8f,-10.5f);
 
-        moveSpeed = 1.5f;
-
+        moveSpeed = 8f;
         transform.position = Vector3.Lerp(transform.position,followTransform.position + onLevelEndOffset,moveSpeed * Time.deltaTime);
         transform.rotation = Quaternion.Lerp(transform.rotation,endLevelRot,0.05f);
     }

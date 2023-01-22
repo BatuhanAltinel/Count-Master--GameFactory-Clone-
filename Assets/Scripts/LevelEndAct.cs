@@ -22,7 +22,7 @@ public class LevelEndAct : MonoBehaviour
         int playerCount = GameManager.Instance.playersInTeam.Count;
         AllPlayersParentNull();
         
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(2f);
         while(playerCount > 0)
         {
             
@@ -33,7 +33,7 @@ public class LevelEndAct : MonoBehaviour
                 playerParent.transform.localPosition = newPos;
 
                 Vector3 targetPos = new Vector3(startXPoint,0,playerParent.transform.position.z);
-
+                
                     GameManager.Instance.playersInTeam[playerCount].transform.position = Vector3.Lerp(
                     GameManager.Instance.playersInTeam[playerCount].transform.position,
                     targetPos,5f);
