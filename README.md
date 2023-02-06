@@ -3,7 +3,7 @@
 
 ### Images From GamePlay
 
-![Screenshot_20230206_224937_Count Master (GameFactory Project)](https://user-images.githubusercontent.com/17069232/217072109-07ded4e4-1aaf-4a5e-b080-9c169054cefd.jpg)
+![Screenshot_20230206_224937_Count Master (GameFactory Project)](https://user-images.githubusercontent.com/17069232/217072109-07ded4e4-1aaf-4a5e-b080-9c169054cefd.jpg = 250 x 250)
 ![Screenshot_20230206_224953_Count Master (GameFactory Project)](https://user-images.githubusercontent.com/17069232/217072209-d0543c07-2def-41fc-99d8-004aaf6ffe67.jpg)
 ![Screenshot_20230206_225058_Count Master (GameFactory Project)](https://user-images.githubusercontent.com/17069232/217072303-12591962-ae5d-47a9-8603-c94b25d75344.jpg)
 ![Screenshot_20230206_225137_Count Master (GameFactory Project)](https://user-images.githubusercontent.com/17069232/217072458-bfb25458-3997-4ea8-a40c-aaf148f99f5f.jpg)
