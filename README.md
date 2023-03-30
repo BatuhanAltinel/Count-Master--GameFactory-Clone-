@@ -1,5 +1,11 @@
 # Count Master (GameFactory Clone)
  Count Master mobile game clone
+## Gameplay Video
+
+
+
+https://user-images.githubusercontent.com/17069232/228887180-fb54f222-b77e-48ee-98f4-6ce5b4c0e88e.mp4
+
 
 ### Images From GamePlay
 
